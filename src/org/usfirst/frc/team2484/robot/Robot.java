@@ -24,13 +24,13 @@ public class Robot extends SampleRobot {
     RobotDrive myRobot;  // class that handles basic drive operations
     Joystick driveStick;  
     Joystick armStick;
-    static final int frontRightMotor=0;
-    static final int frontLeftMotor=0;
-    static final int backRightMotor=0;
-    static final int backLeftMotor=0;
-	//Xbox Controller Axis 
-    static final int LEFT_Y_AXIS = 2;
-    static final int RIGHT_Y_AXIS = 5;
+    static final int frontRightMotor= 0;
+    static final int frontLeftMotor	= 0;
+    static final int backRightMotor	= 0;
+    static final int backLeftMotor	= 0;
+	//XBox Controller Axis 
+    static final int LEFT_Y_AXIS 	= 2;
+    static final int RIGHT_Y_AXIS 	= 5;
 	
 	//XBox Controller buttons
     static final int X_BUT = 3;
@@ -52,6 +52,30 @@ public class Robot extends SampleRobot {
         while (isOperatorControl() && isEnabled()) {
         	myRobot.tankDrive(driveStick, LEFT_Y_AXIS, driveStick, RIGHT_Y_AXIS);
             Timer.delay(0.005);		// wait for a motor update time
+        }
+    }
+    
+    /**
+     * Fixes input axis that isn't centered
+     * 
+     * @param axis Input your RawAxis
+     * @return Returns fixed axis
+     */
+    public double motorFix(double axis)
+    {
+        double DeadZone = .05;
+        double range = 1.0 - DeadZone;
+        if (axis <= DeadZone && axis >= -DeadZone) 
+        {
+            return 0;
+        }
+        else if (axis < -DeadZone)
+        {
+            return (axis + DeadZone)/range;
+        }
+        else 
+        {
+            return (axis - DeadZone)/range;
         }
     }
 
