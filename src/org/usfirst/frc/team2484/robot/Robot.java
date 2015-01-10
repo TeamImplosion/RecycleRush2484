@@ -33,14 +33,14 @@ public class Robot extends SampleRobot {
     static final int RIGHT_Y_AXIS 	= 5;
 	
 	//XBox Controller buttons
-    static final int X_BUT = 3;
-    static final int Y_BUT = 4;
+    static final int X_BUT 			= 3;
+    static final int Y_BUT 			= 4;
 
     public Robot() {
         myRobot = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
         myRobot.setExpiration(0.1);
-        driveStick = new Joystick(0);
-        armStick = new Joystick(1);
+        driveStick 	= new Joystick(0);
+        armStick 	= new Joystick(1);
     }
 
     
