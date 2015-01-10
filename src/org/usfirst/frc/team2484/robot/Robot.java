@@ -54,29 +54,4 @@ public class Robot extends SampleRobot {
             Timer.delay(0.005);		// wait for a motor update time
         }
     }
-    
-    /**
-     * Fixes input axis that isn't centered
-     * 
-     * @param axis Input your RawAxis
-     * @return Returns fixed axis
-     */
-    public double motorFix(double axis)
-    {
-        double DeadZone = .05;
-        double range = 1.0 - DeadZone;
-        if (axis <= DeadZone && axis >= -DeadZone) 
-        {
-            return 0;
-        }
-        else if (axis < -DeadZone)
-        {
-            return (axis + DeadZone)/range;
-        }
-        else 
-        {
-            return (axis - DeadZone)/range;
-        }
-    }
-
 }
