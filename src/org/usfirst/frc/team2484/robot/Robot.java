@@ -22,13 +22,25 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class Robot extends SampleRobot {
     RobotDrive myRobot;  // class that handles basic drive operations
-    Joystick leftStick;  // set to ID 1 in DriverStation
-    Joystick rightStick; // set to ID 2 in DriverStation
+    Joystick driveStick;  
+    Joystick armStick;
+    static final int frontRightMotor=0;
+    static final int frontLeftMotor=0;
+    static final int backRightMotor=0;
+    static final int backLeftMotor=0;
+	//Xbox Controller Axis 
+    static final int LEFT_Y_AXIS = 2;
+    static final int RIGHT_Y_AXIS = 5;
+	
+	//XBox Controller buttons
+    static final int X_BUT = 3;
+    static final int Y_BUT = 4;
+
     public Robot() {
-        myRobot = new RobotDrive(0, 1);
+        myRobot = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
         myRobot.setExpiration(0.1);
-        leftStick = new Joystick(0);
-        rightStick = new Joystick(1);
+        driveStick = new Joystick(0);
+        armStick = new Joystick(1);
     }
 
     
@@ -38,7 +50,7 @@ public class Robot extends SampleRobot {
     public void operatorControl() {
         myRobot.setSafetyEnabled(true);
         while (isOperatorControl() && isEnabled()) {
-        	myRobot.tankDrive(leftStick, rightStick);
+        	myRobot.tankDrive(driveStick, LEFT_Y_AXIS, driveStick, RIGHT_Y_AXIS);
             Timer.delay(0.005);		// wait for a motor update time
         }
     }
